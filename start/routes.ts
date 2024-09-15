@@ -18,6 +18,8 @@ router.post('/produtor', [ProdutorController, 'create'])
 
 router.get('/produtor', [ProdutorController, 'read'])
 
+router.get('/produtor/:id', [ProdutorController, 'read'])
+
 router.put('/produtor/:id', [ProdutorController, 'update'])
 
 router.delete('/produtor/:id', [ProdutorController, 'remove'])

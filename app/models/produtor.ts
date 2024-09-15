@@ -4,6 +4,8 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 // import ProdutorService from "#services/produtor_service"
 
 export default class Produtor extends BaseModel {
+  static table = 'produtores'
+
   @column({ isPrimary: true })
   declare id: number
 
@@ -26,7 +28,7 @@ export default class Produtor extends BaseModel {
   declare areaVegetacao: number
 
   @column()
-  declare areaTotal: number
+  declare areaTotal: number | null
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       table.integer('cidade_id').unsigned().references('cidades.id').notNullable()
       table.double('area_agriculturavel').unsigned().notNullable()
       table.double('area_vegetacao').unsigned().notNullable()
-      table.double('area_total').unsigned().notNullable()
+      table.double('area_total').unsigned()
 
       table.timestamp('created_at')
       table.timestamp('updated_at')

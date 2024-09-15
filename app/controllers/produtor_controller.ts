@@ -9,11 +9,12 @@ export default class ProdutorController {
   }
 
   async read({ request }: HttpContext) {
-    if (request.qs().produtor_nome) {
-      return Produtor.find(request.qs().produtor_nome)
+    if (request.params().id) {
+      const produtor = await Produtor.findOrFail(request.params().id)
+      return produtor
     }
 
-    return Produtor.all()
+    return await Produtor.all()
   }
 
   async update({ params, request }: HttpContext) {
