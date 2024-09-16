@@ -1,5 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column, manyToMany } from '@adonisjs/lucid/orm'
+import type { BelongsTo, ManyToMany } from '@adonisjs/lucid/types/relations'
+import Cidade from './cidade.js'
+import Cultura from './cultura.js'
 
 // import ProdutorService from "#services/produtor_service"
 
@@ -28,7 +31,7 @@ export default class Produtor extends BaseModel {
   declare areaVegetacao: number
 
   @column()
-  declare areaTotal: number | null
+  declare areaTotal: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -36,33 +39,10 @@ export default class Produtor extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
-  // static async all() {
-  //   const produtoresDados = ProdutorService.read()
-  //   const produtores: Produtor[] = []
+  @belongsTo(() => Cidade)
+  declare cidade: BelongsTo<typeof Cidade>
 
-  //   for (const produtorDados of produtoresDados) {
-  //     const produtor = await this.find(produtorDados.produtor_nome)
-  //     produtores.push(produtor)
-  //   }
-  //   // })
-
-  //   return produtores
-  // }
-
-  // static async find(produtor_nome: string) {
-  //   const produtorEncontrado = await ProdutorService.read({ produtor_nome: produtor_nome })
-  //   const produtor = new Produtor()
-
-  //   if (produtorEncontrado[0]) {
-  //     produtor.produtor_nome = produtorEncontrado[0].produtor_nome
-  //     produtor.fazenda = produtorEncontrado[0].fazenda
-  //     produtor.cidade = produtorEncontrado[0].cidade
-  //     // produtor.estado = produtorEncontrado[0].estado
-  //     produtor.area_aravel = produtorEncontrado[0].area_aravel
-  //     produtor.area_vegetacao = produtorEncontrado[0].area_vegetacao
-  //   }
-
-  //   return produtor
-  // }
+  @manyToMany(() => Cultura)
+  declare culturas: ManyToMany<typeof Cultura>
 
 }
