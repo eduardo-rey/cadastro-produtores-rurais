@@ -37,7 +37,7 @@ node ace db:seed -f database/seeders/1_mock_seeder
       "areaAgriculturavel": Área agriculturável (valor numérico em hectares),
       "areaVegetacao": Área de vegetação (valor numérico em hectares),
       "areaTotal": Área total (valor numérico em hectares),
-      "culturas": Lista de IDs das culturas cultivadas na fazenda (IDs podem ser obtidos pelo endpoint /culturas)
+      "culturas": Lista de IDs das culturas cultivadas na fazenda (IDs podem ser obtidos pelo endpoint /cultura)
   }
   ```
 
