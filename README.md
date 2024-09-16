@@ -8,9 +8,13 @@ Uma API para gerenciamento de produtores rurais, incluindo dados para um dashboa
 ## Instalação
 ```
 git clone https://github.com/eduardo-rey/cadastro-produtores-rurais
+npm i
 ```
 Copiar ou renomear `.env.example` para `.env` e incluir credenciais de acesso ao banco de dados PostgreSQL.
-
+Gerar chave de aplicação do Adonis:
+```
+node ace generate:key
+```
 Gerar as tabelas do sistema:
 ```
 node ace migration:run
