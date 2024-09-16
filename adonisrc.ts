@@ -41,7 +41,7 @@ export default defineConfig({
   | List of modules to import before starting the application.
   |
   */
-  preloads: [() => import('#start/routes'), () => import('#start/kernel')],
+  preloads: [() => import('#start/routes'), () => import('#start/kernel'), () => import('#start/rules/unique'), () => import('#start/rules/cpf_cnpj'), () => import('#start/rules/area_total'), () => import('#start/rules/cidade'), () => import('#start/rules/ids_exist')],
 
   /*
   |--------------------------------------------------------------------------

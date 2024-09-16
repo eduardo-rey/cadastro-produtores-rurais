@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('produtor', 100).notNullable()
       table.string('cpf_cnpj', 14).unique().notNullable()
       table.string('fazenda', 100).notNullable()
-      table.integer('cidade_id').unsigned().references('cidades.id').notNullable()
+      table.integer('cidade_id').unsigned().references('cidades.id').nullable()
       table.double('area_agriculturavel').unsigned().notNullable()
       table.double('area_vegetacao').unsigned().notNullable()
       table.double('area_total').unsigned().notNullable()

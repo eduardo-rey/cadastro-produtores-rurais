@@ -16,6 +16,4 @@ export default class Cultura extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
-  @manyToMany(() => Produtor)
-  declare produtores: ManyToMany<typeof Produtor>
 }

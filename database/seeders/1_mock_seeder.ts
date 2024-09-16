@@ -10,7 +10,7 @@ export default class extends BaseSeeder {
   async run() {
     const produtores = await this.getProdutoresComCidadeId(this.#produtoresPF.concat(this.#produtoresPJ)) //this.#produtoresTodos
     await Produtor.updateOrCreateMany('cpfCnpj', produtores)
-    await this.insertProdutoresCulturas()
+    await this.insertCulturasProdutores()
   }
 
   getProdutoresComCidadeId = async function (produtores: any[]) {
@@ -25,7 +25,7 @@ export default class extends BaseSeeder {
     return result
   }
 
-  insertProdutoresCulturas = async function () {
+  insertCulturasProdutores = async function () {
     const produtores = await Produtor.all()
     const culturas = await Cultura.all()
 
@@ -36,7 +36,7 @@ export default class extends BaseSeeder {
       for (let i = 0; i < qtdCulturas; i++) {
         const culturaId = Math.floor(Math.random() * culturasId.length) + 1
 
-        await db.table('produtor_cultura')
+        await db.table('cultura_produtor')
           .insert({
             produtor_id: produtor.id,
             cultura_id: culturaId

@@ -8,21 +8,20 @@
 */
 
 import router from '@adonisjs/core/services/router'
+const CulturaController = () => import('#controllers/cultura_controller')
 const ProdutorController = () => import('#controllers/produtor_controller')
 const DashboardController = () => import('#controllers/dashboard_controller')
 
-router.get('/', async () => {
-  return 'Cadastro de produtores rurais'
-})
+router.get('/cultura', [CulturaController, 'read']).as('cultura.index')
 
-router.post('/produtor', [ProdutorController, 'create']).as('produtor.create')
-
-router.get('/produtor', [ProdutorController, 'read']).as('produtor.index')
-
-router.get('/produtor/:id', [ProdutorController, 'read']).as('produtor.find')
-
-router.put('/produtor/:id', [ProdutorController, 'update']).as('produtor.update')
-
-router.delete('/produtor/:id', [ProdutorController, 'remove']).as('produtor.remove')
+router
+  .group(() => {
+    router.post('/', [ProdutorController, 'create']).as('produtor.create')
+    router.get('/', [ProdutorController, 'read']).as('produtor.index')
+    router.get('/:id', [ProdutorController, 'read']).as('produtor.find')
+    router.put('/:id', [ProdutorController, 'update']).as('produtor.update')
+    router.delete('/:id', [ProdutorController, 'remove']).as('produtor.remove')
+  })
+  .prefix('/produtor')
 
 router.get('/dashboard', [DashboardController, 'index']).as('dashboard.index')

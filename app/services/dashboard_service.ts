@@ -46,17 +46,17 @@ export default class DashboardService {
           porcentagem: areaOutras / totais.areaTotal
         }
       },
-      estados: new Array(),
-      culturas: new Array()
+      culturas: new Array(),
+      estados: new Array()
     }
 
     const quantidadeCulturas = await db
-      .from('produtor_cultura')
+      .from('cultura_produtor')
       .count('*', 'quantidade')
       .firstOrFail()
     const totalPorCultura = await db
       .from('culturas')
-      .join('produtor_cultura', 'produtor_cultura.cultura_id', 'culturas.id')
+      .join('cultura_produtor', 'cultura_produtor.cultura_id', 'culturas.id')
       .select('cultura')
       .count('*', 'quantidade')
       .groupBy('cultura')
@@ -101,37 +101,6 @@ export default class DashboardService {
         }
       })
     }
-
-    // for (const sigla in Estados) {
-    //   // const estado: total = { quantidade: 0, area: 0 };
-    //   const totaisEstado = (await Produtor.query()
-    //     .count('*', 'quantidade')
-    //     .sum('area_agriculturavel', 'areaAgriculturavel')
-    //     .sum('area_vegetacao', 'areaVegetacao')
-    //     .sum('area_total', 'areaTotal')
-    //     .whereHas('cidade', (query) => {
-    //       query.where('estado', sigla)
-    //     })
-    //     .firstOrFail()).$extras
-    //   const estadoAreaOutras = totaisEstado.areaTotal - (totaisEstado.areaAgriculturavel + totaisEstado.areaVegetacao)
-
-    //   resultado.estados[sigla] = {
-    //     quantidade: totaisEstado.quantidade,
-    //     areaTotal: totaisEstado.areaTotal,
-    //     areaAgriculturavel: {
-    //       hectares: totaisEstado.areaAgriculturavel,
-    //       porcentagem: totaisEstado.areaAgriculturavel / totaisEstado.areaTotal
-    //     },
-    //     areaVegetacao: {
-    //       hectares: totaisEstado.areaVegetacao,
-    //       porcentagem: totaisEstado.areaVegetacao / totaisEstado.areaTotal
-    //     },
-    //     areaOutras: {
-    //       hectares: estadoAreaOutras,
-    //       porcentagem: estadoAreaOutras / totaisEstado.areaTotal
-    //     },
-    //   }
-    // }
 
     return resultado
   }
